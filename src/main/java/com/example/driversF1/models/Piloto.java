@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-// Modificar la entidad Piloto
+
 @Entity
 @Table(name = "pilotos")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class Piloto {

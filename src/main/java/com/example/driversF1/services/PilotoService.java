@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -78,8 +78,6 @@ public class PilotoService {
         piloto.setEscuderia(pilotoDTO.getEscuderia());
         piloto.setRating(pilotoDTO.getRating());
 
-        // No tocamos la imagen en esta operación
-
         Piloto actualizado = pilotoRepository.save(piloto);
         return convertToDTO(actualizado);
     }
@@ -87,7 +85,7 @@ public class PilotoService {
     // Eliminar un piloto
     @Transactional
     public void eliminar(Long id) {
-        // Verificamos que exista el piloto
+
         if (!pilotoRepository.existsById(id)) {
             throw new RuntimeException("Piloto no encontrado con ID: " + id);
         }
@@ -130,7 +128,7 @@ public class PilotoService {
                 .orElseThrow(() -> new RuntimeException("Piloto no encontrado con ID: " + id));
 
         if (piloto.getImagenContentType() == null) {
-            return "image/jpeg"; // Valor por defecto
+            return "image/jpeg";
         }
 
         return piloto.getImagenContentType();
